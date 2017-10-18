@@ -116,22 +116,24 @@ var submitButton = $("#submit");
             a.text(triviaQuestions[i].question);
             //Append div to show question element//
             $("#quiz").append(a);
-    function createButton () {
-        for (var j = 0; j<4; j++) {
-            var b = $('<input type="radio" name="butn">' + "test");
-/*            var b = $('<input type="radio" name="butn">' + );*/
-            b.val(triviaQuestions[i].answer[j]);
-/*            b.text(question[i].answer);*/
-            $("#quiz").append(b);
-/*            $("#quiz").append(b);
-/*    for (var j = 0; j<question.lenth; i++) {
-            var b = $('<input type="radio" name="butn">' + questions[i].answer{});
-    }*/
+/*            for (var j = 0; j<4; j++) {
+            var b = $('<input type="radio" name="butn">');
+            b.val(triviaQuestions[0].answer[0]);
+            $("#quiz").append(b);*/
+            $.each(triviaQuestions, function() {
+                $("#quiz").append(
+                    $('<label>',{'text':this.answer.a}).append(
+                $('<input>', {
+                    type: 'radio',
+                    name: 'rdoTriviaQuestions',
+                    id: 'rdoTriviaQuestions' + this.answer,
+                    value: this.answer
+                }))
+            )})
     }
-};
-    createButton ();
-}
-};
+
+    };
+
 
     showQuestions ();
 
