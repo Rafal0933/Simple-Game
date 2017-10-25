@@ -80,31 +80,34 @@
                     }
                     ];
 
-    var counter = 2;
-
+    var counter = 30;
+    // declare variable to use as handle so i can stop timer later
+    var stopTimer;
 
     function timer() {
         var zero = 0;
         counter--;
-        $('#counter').text(counter);
+        $('#counter').text("Time Remaining: "+ counter);
         if (counter <= 0) {
             scoring ();
-            //Doesn't work
-            clearInterval(timer);
+            // use stopTimer handle to stop the interval
+            clearInterval(stopTimer);
         }
       }
 
     function startGame(){
         $("#target").one("click", function (){
+            // Start timer //
             timer ();
-            setInterval (timer, 1000);
+            // start the clock and assign output of set interval function to stop timer to use as a handle
+            stopTimer = setInterval (timer, 1000);
             showQuestions ();
         })
     }
 
     $(document).ready(function () {
-    startGame ();
-        } )
+       startGame ();
+    } )
 
 
             //Loop through the question array, print each question on the screen using Jquery//
@@ -137,6 +140,7 @@
 
         $("#submit").one("click", function (){
             scoring ();
+            clearInterval(stopTimer);
         });
 
 var correct = 0;
